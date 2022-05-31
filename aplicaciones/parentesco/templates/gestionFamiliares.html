@@ -1,0 +1,51 @@
+{% extends "./base.html" %}
+
+{% block title%} Familiares {%endblock%}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h2>Gestion de Familiares</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarFamiliar/" method="post">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre"
+                            required>
+                        <input type="text" id="txtApellido" name="txtApellido" class="form-control"
+                            placeholder="Apellido" required>
+                        <input type="text" id="txtParentesco" name="txtParentesco" class="form-control"
+                            placeholder="Parentesco" required>
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h2>Listado de Familiares</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <THead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Parentesco</th>
+                    </tr>
+                </THead>
+                <tbody>
+                    {% for pariente in parientes %}
+                    <tr>
+                        <td>{{ pariente.nombre }}</td>
+                        <td>{{ pariente.apellido }}</td>
+                        <td>{{ pariente.parentesco }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{%endblock%}
